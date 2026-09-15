@@ -1,0 +1,21 @@
+version: '3'
+
+networks:
+  kafka-net:
+    driver: bridge
+    internal: true
+  
+  pc-net:
+    driver: bridge
+
+services:
+  kafka:
+    image: apache/kafka:latest
+    ports:
+      - 9092:9092
+    enviroment:
+    networks:
+      - kafka-net
+
+  producer:
+  consumer:
