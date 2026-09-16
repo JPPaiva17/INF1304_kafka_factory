@@ -1,4 +1,5 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
+from typing import Literal
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file = ".env", extra = "ignore")
@@ -7,11 +8,13 @@ class Settings(BaseSettings):
 
     sensor_id: str
     machine_id: str
-    setor: str
-    sensor_type: str
+    sector: str
+    sensor_type: Literal[
+        "temperature", "vibration", "energy_consumption", "pressure", "photovoltaic"
+    ]
     
-    intervalo_envio_segundos: float = 2.0
-    probabilidade_anomalia: float = 0.05
+    send_interval_seconds: float = 2.0
+    anomaly_probability: float = 0.05
 
     @property
     def kafka_bootstrap_servers_list(self) -> list[str]:

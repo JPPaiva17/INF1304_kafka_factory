@@ -13,4 +13,4 @@ class SensorReading(BaseModel):
     sensor_type: str
     value: float
     unit: str
-    timestampe: datetime
+    timestamp: datetime
